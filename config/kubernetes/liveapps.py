@@ -39,12 +39,12 @@ def get_kube_ingress_pods(ingress_namespace):
     ingress_pods = []
     try:
         coreapiv1 = client.CoreV1Api()
-        ingress_pods = coreapiv1.list_namespaced_pod(namespace=ingress_namespace).list
+        ingress_pods = coreapiv1.list_namespaced_pod(namespace=ingress_namespace)
     except Exception as e:
         logging.exception(e)
     return ingress_pods
 
-# --> RV resume here...
+
 def get_my_ingress_pod_ip():
     node_ingress_pod = []
     networkingv1 = client.NetworkingV1Api()
