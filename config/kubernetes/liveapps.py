@@ -36,13 +36,13 @@ def get_kube_svc():
 
 def get_kube_ingress_pods(ingress_namespace):
     logging.info("Listing running services")
-    ingress_pods = []
+    ingress_pod_ips = []
     try:
         coreapiv1 = client.CoreV1Api()
         ingress_pod_ips = coreapiv1.list_namespaced_pod(namespace=ingress_namespace).items.status.pod_i_ps
     except Exception as e:
         logging.exception(e)
-    return ingress_pods
+    return ingress_pod_ips
 
 
 def get_my_ingress_pod_ip():
