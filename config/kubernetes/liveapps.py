@@ -14,8 +14,6 @@ if os.path.isfile("/root/.kube/config"):
 else:
     logging.error("kubeconfig not found. ensure node is a valid kube node")
 
-
-
 def get_kube_svc():
     svc_list = []
     try:
@@ -32,19 +30,21 @@ def get_kube_svc():
                 "service_cluster_ips": str(svc_cluster_ips)
             }
             svc_list.append(svc_data)
-
     except Exception as e:
         logging.exception(e)
     return svc_list
 
+# --> RV resume here...
 def get_my_ingress_pod_ip():
     node_ingress_pod = []
-    ingressapiv1 = client.V1Ingress()
+    coreapiv1 = client.CoreV1Api()
+    ingressapiv1 = client.V1IngressList.items()
     try:
         logging.info("Listing ingress pods")
-        print(ingressapiv1)
-        ingress_pod = ingressapiv1.status()
-        node_ingress_pod.append(ingress_pod)
+        networkingv1 = client.NetworkingApi()
+        ingresses = networkingv1.list_ingress_for_all_namespaces().items
+        for ingress in ingresses:
+            node_ingress_pod.append(ingress)
     except Exception as e:
         logging.exception(e)
 
