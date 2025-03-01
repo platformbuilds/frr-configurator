@@ -40,7 +40,7 @@ def get_my_ingress_pod_ip():
     coreapiv1 = client.CoreV1Api()
     try:
         logging.info("Listing ingress pods")
-        networkingv1 = client.NetworkingApi()
+        networkingv1 = client.NetworkingV1Api()
         ingresses = networkingv1.list_ingress_for_all_namespaces().items
         for ingress in ingresses:
             node_ingress_pod.append(ingress)
