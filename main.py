@@ -1,5 +1,5 @@
 import json
-from config.kubernetes.liveapps import get_kube_svc, get_my_ingress_pod_ip
+from config.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip
 
 
 # fetch the running services and ingress pod IPs 
