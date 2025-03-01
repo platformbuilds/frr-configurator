@@ -44,7 +44,7 @@ def get_kube_ingress_pods(ingress_namespace):
         ingress_pods = coreapiv1.list_namespaced_pod(namespace=ingress_namespace).items
         for ingress_pod in ingress_pods:
             if ingress_pod.status.host_ip in node_ip:
-                ingress_pod_ips.append(ingress_pod.status.pod_i_ps)
+                ingress_pod_ips.append(ingress_pod.status.pod_ip)
     except Exception as e:
         logging.exception(e)
     return ingress_pod_ips
