@@ -20,9 +20,9 @@ def get_kube_svc():
             svc_namespace = svc.metadata.namespace
             svc_cluster_ips = svc.spec.cluster_i_ps
             svc_data = {
-                "service_name": svc_name,
-                "service_namespace": svc_namespace,
-                "service_cluster_ips": svc_cluster_ips
+                "service_name": str(svc_name),
+                "service_namespace": str(svc_namespace),
+                "service_cluster_ips": str(svc_cluster_ips)
             }
             svc_list.append(svc_data)
 
