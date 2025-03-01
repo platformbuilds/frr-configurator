@@ -1,5 +1,4 @@
 import os
-import json
 import logging
 from kubernetes import client, config
 
