@@ -44,8 +44,8 @@ def get_my_ingress_pod_ip():
         for ingress_class in ingress_classes:
             ingress = {
                 "ingress_release_name": ingress_class.metadata.annotations["meta.helm.sh/release-name"],
-                "ingress_release_namespace": i.metadata.annotations["meta.helm.sh/release-namespace"],
-                "ingress_name": i.metadata.name
+                "ingress_release_namespace": ingress_class.metadata.annotations["meta.helm.sh/release-namespace"],
+                "ingress_name": ingress_class.metadata.name
             }
             node_ingress_pod.append(ingress)
     except Exception as e:
