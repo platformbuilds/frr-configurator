@@ -1,4 +1,6 @@
 import json
-from config.kubernetes import get_svc_ips
+from config.kubernetes.get_svc_ips import get_kube_svc
 
-print(get_svc_ips.get_kube_svc)
+services = get_kube_svc()
+print(type(services))
+print(services)
