@@ -39,7 +39,7 @@ def get_kube_ingress_pods(ingress_namespace):
     ingress_pods = []
     try:
         coreapiv1 = client.CoreV1Api()
-        ingress_pods = coreapiv1.list_namespaced_pod(namespace=ingress_namespace)
+        ingress_pods = coreapiv1.list_namespaced_pod(namespace=ingress_namespace).items
     except Exception as e:
         logging.exception(e)
     return ingress_pods
