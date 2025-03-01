@@ -18,7 +18,7 @@ else:
 
 
 
-def get_kube_svc():
+def get_kube_svc(coreapiv1):
     svc_list = []
     try:
         logging.info("Listing running services")
@@ -38,10 +38,11 @@ def get_kube_svc():
         logging.exception(e)
     return svc_list
 
-def get_my_ingress_pod_ip():
+def get_my_ingress_pod_ip(ingressapiv1):
     node_ingress_pod = []
     try:
         logging.info("Listing ingress pods")
+        print(ingressapiv1)
         ingress_pod = ingressapiv1.status()
         node_ingress_pod.append(ingress_pod)
     except Exception as e:
