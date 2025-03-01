@@ -1,7 +1,7 @@
 import os
 import logging
 from kubernetes import client, config
-from node.get_node_data import node_ips
+from ..node.get_node_data import node_ips
 
 logging.basicConfig(
     format='{\"timestamp\":\"%(asctime)s\",\"log_level\":\"%(levelname)s\",\"message\":\"%(message)s\",\"app\":\"%(name)s\"}',
