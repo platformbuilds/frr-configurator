@@ -10,18 +10,17 @@ logging.basicConfig(
 
 if os.path.isfile("/root/.kube/config"):
     config.load_kube_config()
-    coreapiv1 = client.CoreV1Api()
-    ingressapiv1 = client.V1Ingress()
     logging.info("successfully loaded kubeconfig")
 else:
     logging.error("kubeconfig not found. ensure node is a valid kube node")
 
 
 
-def get_kube_svc(coreapiv1):
+def get_kube_svc():
     svc_list = []
     try:
         logging.info("Listing running services")
+        coreapiv1 = client.CoreV1Api()
         svc_listing = coreapiv1.list_service_for_all_namespaces(watch=False)
         for svc in svc_listing.items:
             svc_name = svc.metadata.name
@@ -38,8 +37,9 @@ def get_kube_svc(coreapiv1):
         logging.exception(e)
     return svc_list
 
-def get_my_ingress_pod_ip(ingressapiv1):
+def get_my_ingress_pod_ip():
     node_ingress_pod = []
+    ingressapiv1 = client.V1Ingress()
     try:
         logging.info("Listing ingress pods")
         print(ingressapiv1)
