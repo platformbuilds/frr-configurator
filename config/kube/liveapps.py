@@ -75,6 +75,7 @@ def get_my_ingress_pod_ip():
 def check_ingress_pod_health(ingress_pod_ip, ingress_host, ingress_ports_list):
     health_status = "unhealthy"
     '''
-    Code the functionality where the app is giving a successful response
+    get the node_ingress_pod
+    check the app is giving a successful response --> RV Start here.
     '''
     return health_status
