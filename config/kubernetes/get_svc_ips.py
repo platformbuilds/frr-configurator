@@ -14,7 +14,7 @@ if os.path.isfile("/root/.kube/config"):
     v1 = client.CoreV1Api()
     print("Listing pods with their IPs:")
     ret = v1.list_service_for_all_namespaces(watch=False)
-    print(json.dumps(ret))
+    print(json.dumps(ret.items))
     #for i in ret.items:
     #    print("%s\t%s\t%s" % (i.status.pod_ip, i.metadata.namespace, i.metadata.name))
 
