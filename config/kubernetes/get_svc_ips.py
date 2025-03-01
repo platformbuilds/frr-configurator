@@ -15,7 +15,8 @@ if os.path.isfile("/root/.kube/config"):
     print("Listing pods with their IPs:")
     ret = v1.list_service_for_all_namespaces(watch=False)
     for svc in ret.items:
-        print(json.dumps(svc))
+        print(svc)
+        print(type(svc))
 
 else:
     logging.error("Kubeconfig not found !")
