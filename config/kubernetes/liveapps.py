@@ -38,7 +38,6 @@ def get_kube_svc():
 def get_my_ingress_pod_ip():
     node_ingress_pod = []
     coreapiv1 = client.CoreV1Api()
-    ingressapiv1 = client.V1IngressList.items()
     try:
         logging.info("Listing ingress pods")
         networkingv1 = client.NetworkingApi()
@@ -47,5 +46,4 @@ def get_my_ingress_pod_ip():
             node_ingress_pod.append(ingress)
     except Exception as e:
         logging.exception(e)
-
     return node_ingress_pod
