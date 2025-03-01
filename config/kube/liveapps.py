@@ -71,3 +71,10 @@ def get_my_ingress_pod_ip():
     except Exception as e:
         logging.exception(e)
     return node_ingress_pod
+
+def check_ingress_pod_health(ingress_pod_ip, ingress_host, ingress_ports_list):
+    health_status = "unhealthy"
+    '''
+    Code the functionality where the app is giving a successful response
+    '''
+    return health_status
