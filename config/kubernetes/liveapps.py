@@ -34,6 +34,16 @@ def get_kube_svc():
         logging.exception(e)
     return svc_list
 
+def get_kube_ingress_pods(ingress_namespace):
+    logging.info("Listing running services")
+    ingress_pods = []
+    try:
+        coreapiv1 = client.CoreV1Api()
+        ingress_pods = coreapiv1.list_namespaced_pod(namespace=ingress_namespace).list
+    except Exception as e:
+        logging.exception(e)
+    return ingress_pods
+
 # --> RV resume here...
 def get_my_ingress_pod_ip():
     node_ingress_pod = []
@@ -42,10 +52,15 @@ def get_my_ingress_pod_ip():
         logging.info("Listing ingress pods")
         ingress_classes = networkingv1.list_ingress_class().items
         for ingress_class in ingress_classes:
+            ingress_name = ingress_class.metadata.name
+            ingress_namespace = ingress_class.metadata.annotations["meta.helm.sh/release-namespace"]
+            ingress_pods = get_kube_ingress_pods(ingress_namespace)
+
             ingress = {
                 "ingress_release_name": ingress_class.metadata.annotations["meta.helm.sh/release-name"],
                 "ingress_release_namespace": ingress_class.metadata.annotations["meta.helm.sh/release-namespace"],
-                "ingress_name": ingress_class.metadata.name
+                "ingress_name": ingress_class.metadata.name,
+                "ingress_pods": ingress_pods
             }
             node_ingress_pod.append(ingress)
     except Exception as e:
