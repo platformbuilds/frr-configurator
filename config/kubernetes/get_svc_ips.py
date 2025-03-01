@@ -2,7 +2,11 @@ import os
 import logging
 from kubernetes import client, config
 
-logging.
+logging.basicConfig(
+    format='{\"timestamp\":\"%(asctime)s\",\"log_level\":\"%(levelname)s\",\"message\":\"%(message)s\",\"app\":\"%(name)s\"}',
+    level=logging.INFO,
+    datefmt='%Y-%m-%dT%H:%M:%S.000Z',
+    )
 
 if os.path.isfile("/root/.kube/config"):
     config.load_kube_config()
@@ -11,8 +15,6 @@ if os.path.isfile("/root/.kube/config"):
     ret = v1.list_pod_for_all_namespaces(watch=False)
     for i in ret.items:
         print("%s\t%s\t%s" % (i.status.pod_ip, i.metadata.namespace, i.metadata.name))
-
-
 
 else:
     logging.error("Kubeconfig not found !")
