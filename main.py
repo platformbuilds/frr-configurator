@@ -9,7 +9,7 @@ app_ingresses = get_kube_app_with_ingress_all()
 
 print(services)
 print(node_ingress_details)
-print(app_ingresses)
+print(json.dumps(app_ingresses))
 
 '''
 # Check if the current svc can be handled by the node - self check
