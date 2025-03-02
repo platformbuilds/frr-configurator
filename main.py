@@ -33,6 +33,9 @@ for app_ingress in app_ingresses:
 
 # Check the health of each service and then expose the ClusterIP if the node is able to handle the traffic
 l4_kube_proxy_services_to_expose = []
+for svc in services:
+    if svc["service_name"] not in l7_ingress_services_to_expose:
+        l4_kube_proxy_services_to_expose.append(svc)
 
 
 print("{}\n".format(json.dumps(services)))
