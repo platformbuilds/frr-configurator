@@ -35,8 +35,8 @@ for app_ingress in app_ingresses:
 l4_kube_proxy_services_to_expose = []
 
 
-print(services + "\n")
-print(app_ingresses + "\n")
-print(app_ingresses + "\n")
-print(l7_ingress_services_to_expose + "\n")
-print(l4_kube_proxy_services_to_expose + "\n")
+print("{}\n".format(services))
+print("{}\n".format(app_ingresses))
+print("{}\n".format(app_ingresses))
+print("{}\n".format(l7_ingress_services_to_expose))
+print("{}\n".format(l4_kube_proxy_services_to_expose))
