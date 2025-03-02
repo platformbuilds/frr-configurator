@@ -17,7 +17,6 @@ loop every second !
 '''
 
 
-
 # fetch the running services and ingress pod IPs 
 services = get_kube_svc()
 app_ingresses = get_kube_app_with_ingress_all()
@@ -36,3 +35,8 @@ for app_ingress in app_ingresses:
 l4_kube_proxy_services_to_expose = []
 
 
+print(services + "\n")
+print(app_ingresses + "\n")
+print(app_ingresses + "\n")
+print(l7_ingress_services_to_expose + "\n")
+print(l4_kube_proxy_services_to_expose + "\n")
