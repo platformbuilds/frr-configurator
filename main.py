@@ -35,8 +35,8 @@ for app_ingress in app_ingresses:
 l4_kube_proxy_services_to_expose = []
 
 
-print("{}\n".format(services))
-print("{}\n".format(app_ingresses))
-print("{}\n".format(node_ingress_details))
-print("{}\n".format(l7_ingress_services_to_expose))
-print("{}\n".format(l4_kube_proxy_services_to_expose))
+print("{}\n".format(json.dumps(services)))
+print("{}\n".format(json.dumps(app_ingresses)))
+print("{}\n".format(json.dumps(node_ingress_details)))
+print("{}\n".format(json.dumps(l7_ingress_services_to_expose)))
+print("{}\n".format(json.dumps(l4_kube_proxy_services_to_expose)))
