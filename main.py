@@ -37,6 +37,6 @@ l4_kube_proxy_services_to_expose = []
 
 print("{}\n".format(services))
 print("{}\n".format(app_ingresses))
-print("{}\n".format(app_ingresses))
+print("{}\n".format(node_ingress_details))
 print("{}\n".format(l7_ingress_services_to_expose))
 print("{}\n".format(l4_kube_proxy_services_to_expose))
