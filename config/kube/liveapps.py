@@ -35,8 +35,20 @@ def get_kube_svc():
         logging.exception(e)
     return svc_list
 
+def get_kube_ingress_all():
+    logging.info("Listing all the ingress configs")
+    ingresses = []
+    try:
+        networkingv1 = client.NetworkingV1Api()
+        ingresses = networkingv1.list_ingress_for_all_namespaces_with_http_info()[0].items
+    except Exception as e:
+        logging.exception(e)
+
+    return ingresses
+
+
 def get_kube_ingress_pods(ingress_namespace):
-    logging.info("Listing running services")
+    logging.info("Listing ingress pods for {} namespace".format(ingress_namespace))
     ingress_pod_ips = []
     try:
         node_ip = node_ips()
