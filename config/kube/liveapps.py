@@ -24,11 +24,11 @@ def get_kube_svc():
         for svc in svc_listing.items:
             svc_name = svc.metadata.name
             svc_namespace = svc.metadata.namespace
-            svc_cluster_ips = list(svc.spec.cluster_i_ps)
+            svc_cluster_ip = svc.spec.cluster_ip
             svc_data = {
                 "service_name": str(svc_name),
                 "service_namespace": str(svc_namespace),
-                "service_cluster_ips": svc_cluster_ips
+                "service_cluster_ips": svc_cluster_ip
             }
             svc_list.append(svc_data)
     except Exception as e:
