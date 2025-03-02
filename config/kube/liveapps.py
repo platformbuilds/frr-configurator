@@ -24,11 +24,11 @@ def get_kube_svc():
         for svc in svc_listing.items:
             svc_name = svc.metadata.name
             svc_namespace = svc.metadata.namespace
-            svc_cluster_ips = svc.spec.cluster_i_ps()
+            svc_cluster_ips = list(svc.spec.cluster_i_ps)
             svc_data = {
                 "service_name": str(svc_name),
                 "service_namespace": str(svc_namespace),
-                "service_cluster_ips": str(svc_cluster_ips)
+                "service_cluster_ips": svc_cluster_ips
             }
             svc_list.append(svc_data)
     except Exception as e:
@@ -94,7 +94,7 @@ def get_my_ingress_pod_ip():
             ingress_svc = []
             for svc in svc_list:
                 if svc["service_name"] == ingress_class.metadata.annotations["meta.helm.sh/release-name"]:
-                    ingress_svc.append(list(svc["service_cluster_ips"]))
+                    ingress_svc.append(svc["service_cluster_ips"])
 
             ingress = {
                 "ingress_release_name": ingress_class.metadata.annotations["meta.helm.sh/release-name"],
