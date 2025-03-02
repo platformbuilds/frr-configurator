@@ -1,0 +1,10 @@
+[
+    {
+        "ingress_release_name": "haproxy-kubernetes-ingress",
+        "ingress_release_namespace": "haproxy-controller",
+        "ingress_name": "haproxy",
+        "ingress_pods": [
+            "10.30.20.242"
+        ]
+    }
+]

@@ -90,11 +90,18 @@ def get_my_ingress_pod_ip():
             ingress_namespace = ingress_class.metadata.annotations["meta.helm.sh/release-namespace"]
             ingress_pods = get_kube_ingress_pods(ingress_namespace)
 
+            svc_list = get_kube_svc()
+            ingress_svc = []
+            for svc in svc_list:
+                if svc["service_name"] == ingress_name:
+                    ingress_svc.append("service_cluster_ips")
+
             ingress = {
                 "ingress_release_name": ingress_class.metadata.annotations["meta.helm.sh/release-name"],
                 "ingress_release_namespace": ingress_class.metadata.annotations["meta.helm.sh/release-namespace"],
                 "ingress_name": ingress_class.metadata.name,
-                "ingress_pods": ingress_pods
+                "ingress_pods": ingress_pods,
+                "ingress_svc": ingress_svc
             }
             node_ingress_pod.append(ingress)
     except Exception as e:
