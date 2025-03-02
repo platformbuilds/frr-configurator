@@ -35,7 +35,7 @@ def get_kube_svc():
         logging.exception(e)
     return svc_list
 
-def get_kube_app with_ingress_all():
+def get_kube_app_with_ingress_all():
     logging.info("Listing all the ingress configs")
     app_ingresses = []
     try:
