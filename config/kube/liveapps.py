@@ -47,7 +47,9 @@ def get_kube_app_with_ingress_all():
             app_ingress_http_routes = []
             for rule in ingress_app.spec.rules:
                 http_host = rule.host
-                http_paths = rule.http.paths
+                http_paths = []
+                for path in rule.http.paths:
+                    http_paths.append({"port":path.backend.service.port.number,"url":path.path,"url_prefix":path.path_type})
                 app_ingress_http_routes.append({"http_host": http_host, "http_paths": http_paths})
             app_ingress = {
                 "name": app_ingress_name,
