@@ -35,16 +35,27 @@ def get_kube_svc():
         logging.exception(e)
     return svc_list
 
-def get_kube_ingress_all():
+def get_kube_app with_ingress_all():
     logging.info("Listing all the ingress configs")
-    ingresses = []
+    app_ingresses = []
     try:
         networkingv1 = client.NetworkingV1Api()
-        ingresses = networkingv1.list_ingress_for_all_namespaces_with_http_info()[0].items
+        ingresses_dump = networkingv1.list_ingress_for_all_namespaces_with_http_info()[0].items
+        for ingress_app in ingresses_dump:
+            app_ingress_name = ingress_app.metadata.name
+            app_ingress_namespace = ingress_app.metadata.namespace
+            app_ingress_http_routes = ingress_app.spec.rules
+            app_ingress = {
+                "name": app_ingress_name,
+                "namespace": app_ingress_namespace,
+                "http_routes": app_ingress_http_routes
+            }
+            app_ingresses.append(app_ingress)
+
     except Exception as e:
         logging.exception(e)
 
-    return ingresses
+    return app_ingresses
 
 
 def get_kube_ingress_pods(ingress_namespace):

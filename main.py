@@ -1,15 +1,15 @@
 import json
-from config.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip, get_kube_ingress_all
+from config.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip, get_kube_app_with_ingress_all
 
 
 # fetch the running services and ingress pod IPs 
 services = get_kube_svc()
 node_ingress_details = get_my_ingress_pod_ip()
-kube_ingresses = get_kube_ingress_all()
+app_ingresses = get_kube_app_with_ingress_all()
 
 print(services)
 print(node_ingress_details)
-print(kube_ingresses)
+print(app_ingresses)
 
 '''
 # Check if the current svc can be handled by the node - self check
