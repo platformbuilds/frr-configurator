@@ -94,7 +94,7 @@ def get_my_ingress_pod_ip():
             ingress_svc = []
             for svc in svc_list:
                 if svc["service_name"] == ingress_class.metadata.annotations["meta.helm.sh/release-name"]:
-                    ingress_svc.append("service_cluster_ips")
+                    ingress_svc.append(svc["service_cluster_ips"])
 
             ingress = {
                 "ingress_release_name": ingress_class.metadata.annotations["meta.helm.sh/release-name"],
