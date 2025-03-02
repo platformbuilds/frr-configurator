@@ -44,7 +44,7 @@ def get_kube_app_with_ingress_all():
         for ingress_app in ingresses_dump:
             app_ingress_name = ingress_app.metadata.name
             app_ingress_namespace = ingress_app.metadata.namespace
-            app_ingress_http_routes = ingress_app.spec.rules
+            app_ingress_http_routes = list(ingress_app.spec.rules)
             app_ingress = {
                 "name": app_ingress_name,
                 "namespace": app_ingress_namespace,
