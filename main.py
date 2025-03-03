@@ -41,7 +41,8 @@ for ingress in node_ingress_details:
 l4_kube_proxy_services_to_expose = []
 for svc in services:
     if svc["service_name"] not in l7_ingress_services_to_expose:
-        l4_kube_proxy_services_to_expose.append(svc["service_name"])
+        if svc["service_name"] not in node_ingresses:
+            l4_kube_proxy_services_to_expose.append(svc["service_name"])
 
 
 #print("{}\n".format(json.dumps(services)))
