@@ -109,12 +109,21 @@ def get_my_ingress_pod_ip():
 
 def get_kube_proxy_info():
     coreapiv1 = client.CoreV1Api()
-    networkingv1 = client.NetworkingV1Api()
     kube_proxy_pods = []
-    kube_system_pods = coreapiv1.list_namespaced_pod(namespace="kube-system").items
-    for pod in kube_system_pods:
-        if "kube-proxy" in pod.metadata.name:
-            pass
+    try:
+        kube_system_pods = coreapiv1.list_namespaced_pod(namespace="kube-system").items
+        for pod in kube_system_pods:
+            if "kube-proxy" in pod.metadata.name:
+                kube_proxy_pods.append({
+                    "kube_proxy_name": pod.metadata.name,
+                    "kube_proxy_namespace": pod.metadata.namespace,
+                    "kube_proxy_node_ip": pod.status.host_ip,
+                    "kube_proxy_pod_ip": pod.status.pod_ip
+                    })
+    except Exception as e:
+        logging.exception(e)
+    return kube_proxy_pods
+    
 
 
 def check_ingress_pod_health(ingress_pod_ip, ingress_host, ingress_ports_list):

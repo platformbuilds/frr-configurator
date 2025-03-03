@@ -1,5 +1,6 @@
 import json
-from config.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip, get_kube_app_with_ingress_all
+from config.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip, get_kube_app_with_ingress_all, get_kube_proxy_info
+
 
 '''
 Check if node is eligible and healthy for
@@ -21,6 +22,7 @@ loop every second !
 services = get_kube_svc()
 app_ingresses = get_kube_app_with_ingress_all()
 node_ingress_details = get_my_ingress_pod_ip()
+node_kube_proxy_details = get_kube_proxy_info()
 
 # Blindly advertise the ClusterIP of Ingress Service if node is eligible
 svc_list = []
@@ -40,6 +42,7 @@ for svc in services:
 
 print("{}\n".format(json.dumps(services)))
 print("{}\n".format(json.dumps(app_ingresses)))
+print("{}\n".format(json.dumps(node_kube_proxy_details)))
 print("{}\n".format(json.dumps(node_ingress_details)))
 print("{}\n".format(json.dumps(l7_ingress_services_to_expose)))
 print("{}\n".format(json.dumps(l4_kube_proxy_services_to_expose)))
