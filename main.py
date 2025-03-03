@@ -1,5 +1,5 @@
 import json
-from config.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip, get_kube_app_with_ingress_all, get_kube_proxy_info
+from lib.config.orchestrator.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip, get_kube_app_with_ingress_all, get_kube_proxy_info
 
 
 '''
@@ -47,12 +47,14 @@ for svc in services:
             l4_kube_proxy_services_to_expose.append(svc["service_name"])
 
 
-#print("{}\n".format(json.dumps(services)))
 
 print("L7 Ingresses to be BGP Advertised:\n{}".format(json.dumps(node_ingresses)))
 print("L7 Applications that are automatically getting advertised:\n{}".format(json.dumps(app_ingresses)))
+print("if my ingress pod on current node is healthy, advertise the Cluster IP of the ingress svc")
+
 
 print("L4 Kube-Proxy ClusterIP SVCs to be BGP Advertised:\n{}".format(json.dumps(l4_kube_proxy_services_to_expose)))
+print("if my kube-proxy pod on current node is healthy, advertise the Cluster IP of the l4 svc")
 
 
 #print("{}\n".format(json.dumps(app_ingresses)))
