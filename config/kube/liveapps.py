@@ -114,6 +114,7 @@ def get_kube_proxy_info():
     kube_system_pods = coreapiv1.list_namespaced_pod(namespace="kube-system").items
     for pod in kube_system_pods:
         if "kube-proxy" in pod.metadata.name:
+            pass
 
 
 def check_ingress_pod_health(ingress_pod_ip, ingress_host, ingress_ports_list):
