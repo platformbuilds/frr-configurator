@@ -1,5 +1,5 @@
 import json
-from lib.config.orchestrator.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip, get_kube_app_with_ingress_all, get_kube_proxy_info
+from helpers.config.orchestrator.kube.liveapps import get_kube_svc, get_my_ingress_pod_ip, get_kube_app_with_ingress_all, get_kube_proxy_info
 
 
 '''
