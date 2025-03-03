@@ -86,14 +86,13 @@ def get_my_ingress_pod_ip():
         logging.info("Listing ingress pods")
         ingress_classes = networkingv1.list_ingress_class().items
         for ingress_class in ingress_classes:
-            ingress_name = ingress_class.metadata.name
             ingress_namespace = ingress_class.metadata.annotations["meta.helm.sh/release-namespace"]
             ingress_pods = get_kube_ingress_pods(ingress_namespace)
 
             svc_list = get_kube_svc()
             ingress_svc = []
             for svc in svc_list:
-                if svc["service_name"] == ingress_class.metadata.annotations["meta.helm.sh/release-name"]:
+                if ingress_class.metadata.annotations["meta.helm.sh/release-name"] in svc["service_name"]:
                     ingress_svc.append(svc["service_cluster_ips"])
 
             ingress = {
@@ -108,10 +107,19 @@ def get_my_ingress_pod_ip():
         logging.exception(e)
     return node_ingress_pod
 
+def get_kube_proxy_info():
+    coreapiv1 = client.CoreV1Api()
+    networkingv1 = client.NetworkingV1Api()
+    kube_proxy_pods = []
+    kube_system_pods = coreapiv1.list_namespaced_pod(namespace="kube-system").items
+    for pod in kube_system_pods:
+        if "kube-proxy" in pod.metadata.name:
+
+
 def check_ingress_pod_health(ingress_pod_ip, ingress_host, ingress_ports_list):
-    health_status = "unhealthy"
+    healthy = False
     '''
     get the node_ingress_pod
     check the app is giving a successful response --> RV Start here.
     '''
-    return health_status
+    return healthy
