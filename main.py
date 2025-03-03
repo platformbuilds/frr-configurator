@@ -31,7 +31,7 @@ for svc in services:
 
 l7_ingress_services_to_expose = []
 for app_ingress in app_ingresses:
-    l7_ingress_services_to_expose.append(app_ingress)
+    l7_ingress_services_to_expose.append(app_ingress["name"])
 
 # Check the health of each service and then expose the ClusterIP if the node is able to handle the traffic
 l4_kube_proxy_services_to_expose = []
