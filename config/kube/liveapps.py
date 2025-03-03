@@ -111,15 +111,17 @@ def get_kube_proxy_info():
     coreapiv1 = client.CoreV1Api()
     kube_proxy_pods = []
     try:
+        node_ip = node_ips()
         kube_system_pods = coreapiv1.list_namespaced_pod(namespace="kube-system").items
         for pod in kube_system_pods:
             if "kube-proxy" in pod.metadata.name:
-                kube_proxy_pods.append({
-                    "kube_proxy_name": pod.metadata.name,
-                    "kube_proxy_namespace": pod.metadata.namespace,
-                    "kube_proxy_node_ip": pod.status.host_ip,
-                    "kube_proxy_pod_ip": pod.status.pod_ip
-                    })
+                if pod.status.host_ip in node_ip:
+                    kube_proxy_pods.append({
+                        "kube_proxy_name": pod.metadata.name,
+                        "kube_proxy_namespace": pod.metadata.namespace,
+                        "kube_proxy_node_ip": pod.status.host_ip,
+                        "kube_proxy_pod_ip": pod.status.pod_ip
+                        })
     except Exception as e:
         logging.exception(e)
     return kube_proxy_pods
