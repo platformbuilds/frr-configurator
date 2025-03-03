@@ -1,7 +1,10 @@
 import os
+import sys
+my_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, my_path + '/../../../../')
 import logging
 from kubernetes import client, config
-from ..node.get_node_data import node_ips
+from helpers.config.node.get_node_data import node_ips
 
 logging.basicConfig(
     format='{\"timestamp\":\"%(asctime)s\",\"log_level\":\"%(levelname)s\",\"message\":\"%(message)s\",\"app\":\"%(name)s\"}',
