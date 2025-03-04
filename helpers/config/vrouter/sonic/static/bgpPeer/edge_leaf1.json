@@ -1,0 +1,63 @@
+{
+  "sonic-bgp-peergroup:BGP_PEER_GROUP": {
+    "BGP_PEER_GROUP_LIST": [
+      {
+        "vrf_name": "default",
+        "peer_group_name": "test",
+        "local_asn": 65202,
+        "name": "connect-server",
+        "peer_type": "internal",
+        "ebgp_multihop": true,
+        "keepalive": 1,
+        "holdtime": 3,
+        "conn_retry": 1,
+        "min_adv_interval": 4,
+        "passive_mode": true,
+        "capability_ext_nexthop": true,
+        "disable_ebgp_connected_route_check": true,
+        "enforce_first_as": true,
+        "solo_peer": true,
+        "ttl_security_hops": 1,
+        "bfd": true,
+        "bfd_check_ctrl_plane_failure": true,
+        "capability_dynamic": true,
+        "dont_negotiate_capability": true,
+        "enforce_multihop": true,
+        "override_capability": true,
+        "strict_capability_match": false,
+        "admin_status": true,
+        "local_as_no_prepend": true,
+        "local_as_replace_as": true
+      }
+    ]
+  },
+  "sonic-bgp-peergroup:BGP_PEER_GROUP_AF": {
+    "BGP_PEER_GROUP_AF_LIST": [
+      {
+        "vrf_name": "default",
+        "peer_group_name": "test",
+        "afi_safi": "ipv4",
+        "admin_status": true,
+        "send_default_route": true,
+        "max_prefix_limit": 1000,
+        "max_prefix_warning_only": true,
+        "soft_reconfiguration_in": true,
+        "rrclient": true,
+        "as_override": true,
+        "tx_add_paths": "tx_all_paths",
+        "unchanged_as_path": true,
+        "unchanged_med": true,
+        "unchanged_nexthop": true,
+        "nhself": true,
+        "nexthop_self_force": true,
+        "remove_private_as_enabled": true,
+        "replace_private_as": true,
+        "remove_private_as_all": true,
+        "allow_as_in": true,
+        "allow_as_origin": true,
+        "cap_orf": "send",
+        "route_server_client": true
+      }
+    ]
+  }
+}
