@@ -1,0 +1,157 @@
+{
+  "sonic-bgp-global:BGP_GLOBALS": {
+    "BGP_GLOBALS_LIST": [
+          {
+            "vrf_name": "default",
+            "router_id": "10.94.1.1",
+            "local_asn": 65201,
+            "as_path_mp_as_set": true,
+            "keepalive": 1,
+            "holdtime": 3
+          }
+        ]
+      },
+    "BGP_GLOBALS_AF": {
+      "BGP_GLOBALS_AF_LIST": [
+        {
+          "vrf_name": "default",
+          "afi_safi": "ipv4",
+          "max_ebgp_paths": 256,
+          "max_ibgp_paths": 256
+        },
+        {
+          "vrf_name": "default",
+          "afi_safi": "ipv6",
+          "max_ebgp_paths": 256,
+          "max_ibgp_paths": 256
+        }
+      ]
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "sonic-bgp-global:BGP_GLOBALS": {
+    "BGP_GLOBALS_LIST": [
+      {
+        "vrf_name": "default",
+        "router_id": "10.94.1.1",
+        "local_asn": 65201,
+        "as_path_mp_as_set": true,
+        "keepalive": 1,
+        "holdtime": 3
+      }
+    ]
+  },
+  "sonic-bgp-global:BGP_GLOBALS_AF": {
+    "BGP_GLOBALS_AF_LIST": [
+      {
+        "vrf_name": "default",
+        "afi_safi": "ipv4",
+        "max_ebgp_paths": 256,
+        "max_ibgp_paths": 256,
+        "default-originate-ipv4": true,
+      },
+      {
+        "vrf_name": "default",
+        "afi_safi": "ipv6",
+        "max_ebgp_paths": 256,
+        "max_ibgp_paths": 256,
+        "default-originate-ipv4": true,
+      }
+    ]
+  },
+  "sonic-bgp-global:BGP_GLOBALS_AF_AGGREGATE_ADDR": {
+    "BGP_GLOBALS_AF_AGGREGATE_ADDR_LIST": [
+      {
+        "vrf_name": "string",
+        "afi_safi": "string",
+        "ip_prefix": "string",
+        "as_set": true,
+        "summary_only": true,
+        "policy": "string"
+      }
+    ]
+  },
+  "sonic-bgp-global:BGP_GLOBALS_AF_NETWORK": {
+    "BGP_GLOBALS_AF_NETWORK_LIST": [
+      {
+        "vrf_name": "string",
+        "afi_safi": "string",
+        "ip_prefix": "string",
+        "policy": "string",
+        "backdoor": true
+      }
+    ]
+  },
+  "sonic-bgp-global:BGP_GLOBALS_EVPN_RT": {
+    "BGP_GLOBALS_EVPN_RT_LIST": [
+      {
+        "vrf": "string",
+        "afi-safi-name": "string",
+        "route-target": "string",
+        "route-target-type": "string"
+      }
+    ]
+  },
+  "sonic-bgp-global:BGP_GLOBALS_EVPN_VNI": {
+    "BGP_GLOBALS_EVPN_VNI_LIST": [
+      {
+        "vrf": "string",
+        "afi-safi-name": "string",
+        "vni-number": 0,
+        "advertise-default-gw": true,
+        "advertise-svi-ip": true,
+        "disable-ead-evi-rx": true,
+        "disable-ead-evi-tx": true,
+        "use-es-l3nhg": true,
+        "route-distinguisher": "string",
+        "import-rts": [
+          "string"
+        ],
+        "export-rts": [
+          "string"
+        ],
+        "advertise-pip": true,
+        "advertise-pip-ip": "string",
+        "advertise-pip-peer-ip": "string"
+      }
+    ]
+  },
+  "sonic-bgp-global:BGP_GLOBALS_EVPN_VNI_RT": {
+    "BGP_GLOBALS_EVPN_VNI_RT_LIST": [
+      {
+        "vrf": "string",
+        "afi-safi-name": "string",
+        "vni-number": 0,
+        "route-target": "string",
+        "route-target-type": "string"
+      }
+    ]
+  },
+  "sonic-bgp-global:BGP_GLOBALS_ROUTE_ADVERTISE": {
+    "BGP_GLOBALS_ROUTE_ADVERTISE_LIST": [
+      {
+        "vrf": "string",
+        "dst-afi-safi-name": "string",
+        "src-afi-safi-name": "string",
+        "policy": [
+          "string"
+        ]
+      }
+    ]
+  }
