@@ -1,7 +1,7 @@
 import requests
-from requests.auth import HTTPBasicAuth
-import json, csv, os
-from readCsv import get_ip_for_hostname, read_json_for_hostname
+import json, csv, os,sys
+sys.path.append("../../../")
+from common.readCsv import get_ip_for_hostname, read_json_for_hostname
 
 class BgpPeergroup:
     def __init__(self, username, password):
@@ -12,9 +12,11 @@ class BgpPeergroup:
     def get_config(self, host):
         # GET request to fetch the configuration
         try:
+            current_path = os.getcwd()
+            print(current_path)
             ip = get_ip_for_hostname(host)
             url = f'https://{ip}/restconf/data/sonic-bgp-peergroup:sonic-bgp-peergroup'
-            response = requests.get(url, auth=HTTPBasicAuth(self.username, self.password), verify=False)
+            response = requests.get(url, auth=requests.auth.HTTPBasicAuth(self.username, self.password), verify=False)
             # Check for successful response
             if response.status_code == 200:
                 print("GET Request Successful:")
@@ -44,7 +46,7 @@ class BgpPeergroup:
             
             print(f"Sending PUT request to {url} with data: {json_data}")  # Debugging
             
-            response = requests.post(url, auth=HTTPBasicAuth(self.username, self.password),
+            response = requests.post(url, auth=requests.auth.HTTPBasicAuth(self.username, self.password),
                                     headers=headers, data=json.dumps(json_data), verify=False)
             
             if response.status_code == 200:
